@@ -68,7 +68,7 @@ int main(){
 
             std::vector<Character*> tabMonsters;
 
-            Player user("Joueur", userName, 20, 10, 20, "epee", "bouclier", 0);
+            Player user("Joueur", userName, 35, 10, 20, "epee", "bouclier", 0);
 
             Character Slime("Non-joueur", "un Slime", 10, 2, 5, 10);
             Character Gobelin("Non-joueur", "un Gobelin", 15, 5, 3, 10);
@@ -94,6 +94,7 @@ int main(){
 
             std::string pseudoMonsterRandom = randomMonster->getPseudo();
             int lifeMonsterRandom = randomMonster->getLife();
+            int WalletMonsterRandom = randomMonster->getWallet().getMoney();
 
             std::cout << "\n" << pseudoMonsterRandom << " est apparue !" << std::endl;
             std::cout << "Ce monstre a " << lifeMonsterRandom << " points de vie.\n" << std::endl;
@@ -137,18 +138,18 @@ int main(){
 
                     std::cout << "\nDegats infliges par " << userName << " : " << userAttack << attackType << std::endl;
 
-                    if(randomMonster->getLife() < 0){
+                    if(randomMonster->getLife() <= 0){
 
                         std::cout << "______________________________________________" << std::endl;
 
                         std::cout << "\nPoint de vie restants du monstre : 0" << std::endl;
                         std::cout << "\nLe monstre a etait terasser !! Bravo aventurier !\n" << std::endl;
-                        std::cout << "Vous remporter 10 piece d'or" << std::endl;
+                        std::cout << "Vous remporter " << WalletMonsterRandom << " piece d'or" << std::endl;
+                        user.getWallet().setMoney(WalletMonsterRandom);
                         std::cout << "Votre solde s'eleve donc a : " << user.getWallet().getMoney() << "\n" << std::endl;
 
                         std::cout << "______________________________________________" << std::endl;
 
-                        break;
                     }else{
                         std::cout << "\nPoints de vie restants du monstre : " << randomMonster->getLife() << std::endl;
                     }
